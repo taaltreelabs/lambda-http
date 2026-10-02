@@ -1,0 +1,64 @@
+{
+  "name": "@taaltreelabs/lambda-http",
+  "version": "0.1.0",
+  "description": "Small TypeScript HTTP utilities for AWS Lambda",
+  "type": "module",
+  "license": "MIT",
+  "author": "TaalTree Labs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taaltreelabs/lambda-http.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taaltreelabs/lambda-http/issues"
+  },
+  "homepage": "https://github.com/taaltreelabs/lambda-http#readme",
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tests/tsconfig.json",
+    "check:pack": "node scripts/check-pack.mjs",
+    "check": "npm run build && npm run typecheck && npm test && npm run check:pack",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.0",
+    "@types/node": "^22.0.0",
+    "typescript": "~5.9.3"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "api-gateway",
+    "http",
+    "typescript",
+    "response"
+  ]
+}
